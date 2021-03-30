@@ -4,7 +4,7 @@ module.exports = class {
      static fetchAll() {
           return new Promise((resolve, reject) => {
                var connection = db;
-               var sql = "SELECT id, name, imgone, price  FROM product";
+               var sql = "SELECT id, name, img, price  FROM product";
                connection.query(sql, (err, data) => {
                     data = data;
                     if (err) {
@@ -29,16 +29,3 @@ module.exports = class {
           })
      }
 }
-
-// exports.create = function () {
-//      //chèn record mới vào table 
-// }
-// exports.update = function () {
-//      //cập nhật record vào table 
-// }
-// exports.read = function (id) {
-//      //trả về chi tiết 1 record từ table 
-// }
-// exports.delete = function (id) {
-//      //xóa 1 record  
-// }

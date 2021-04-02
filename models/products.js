@@ -3,9 +3,8 @@ var data = []; //biến để chứa dữ liệu đổ về cho controller
 module.exports = class {
      static fetchAll() {
           return new Promise((resolve, reject) => {
-               var connection = db;
                var sql = "SELECT id, name, img, price, price_sale FROM product";
-               connection.query(sql, (err, data) => {
+               db.query(sql, (err, data) => {
                     data = data;
                     if (err) {
                          return reject(err);
@@ -16,10 +15,9 @@ module.exports = class {
      }
      static fetchIdProduct(id) {
           return new Promise((resolve, reject) => {
-               var connection = db;
                var sql = `SELECT * FROM product WHERE id=${id}`;
                console.log(sql);
-               connection.query(sql, (err, data) => {
+               db.query(sql, (err, data) => {
                     data = data;
                     if (err) {
                          return reject(err);
@@ -28,18 +26,31 @@ module.exports = class {
                })
           })
      }
-     static addProduct(name, img, price, price_sale){
+     static addProduct(name, img, price, price_sale, content, id_catalog){
           return new Promise ((resolve, reject) => {
-               var connection = db;
-               var sql = `INSERT INTO product (name, img, price, price_sale) VALUES ('a', 'sp11.png', 45, 22)`;
-               connection.query(sql, (err, data) => {
+               var sql = `INSERT INTO product (name, img, price, price_sale, content, id_catalog) VALUES ('${name}', '${img}', ${price}, ${price_sale}, '${content}', (SELECT * FROM catalog WHERE id=${id_catalog}))`
+               // var sql = `
+               // INSERT INTO product
+               // SET name = '${name}', 
+               //      img = '${img}',
+               //      price = ${price}, 
+               //      price_sale = ${price_sale},
+               //      content = '${content}',
+               //      id_catalog = (
+               //           SELECT id
+               //           FROM catalog
+               //           WHERE name = 'sinh'
+               //     )
+               // `
+               db.query(sql, (err, data) => {
                     data = data;
+                    console.log(data);
                     if (err) {
                          return reject(err);
                     }
                     resolve(data)
+                    console.log(data);
                })
-
           })
      }
 }

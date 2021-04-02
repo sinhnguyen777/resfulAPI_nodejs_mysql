@@ -1,5 +1,5 @@
 const Product = require('../models/products')
-const product = [];
+const post = [];
 // show tất cả
 exports.getAll = (req, res) => {
     Product.fetchAll()
@@ -28,10 +28,14 @@ exports.addProduct = (req, res) => {
     const img = req.body.img;
     const price = req.body.price;
     const price_sale = req.body.price_sale;
-    Product.addProduct(name, img, price, price_sale)
+    const content = req.body.content;
+    const id_catalog = req.body.id_catalog;
+    
+    // console.log(post);
+    Product.addProduct(name, img, price, price_sale, content, id_catalog)
     .then(post => {
-        // console.log(post);
-        res.status(200).json({message: 'Hello post sucessfully', post: post })
+        console.log(post);
+        res.status(200).json({message: 'Hello post sucessfully', post: post})
     })
     .catch(err => {
         res.status(500).json({message: err})

@@ -46,3 +46,28 @@ exports.addProduct = (req, res) => {
         res.status(500).json({message: err})
     })
 }
+exports.editProduct = (req, res) => {
+    const id = req.params.id
+    const name = req.body.name;
+    const img = req.body.img;
+    const price = req.body.price;
+    const price_sale = req.body.price_sale;
+    const content = req.body.content;
+    
+    Product.editProduct(id, name, img, price, price_sale, content)
+    .then(post => {
+        res.status(200).json({message: 'Hello post sucessfully', post: post})
+    })
+    .catch(err => {
+        res.status(500).json({message: err})
+    })
+}
+
+exports.deleteProduct = (req, res) => {
+    var id = req.params.id
+    Product.deleteProduct(id)
+    .then(res.status(200).json({message: 'Hello post delete sucessfully'}))
+    .catch(err => {
+        res.status(500).json({message: err})
+    })
+}

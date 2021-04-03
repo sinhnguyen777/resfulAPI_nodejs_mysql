@@ -26,23 +26,12 @@ module.exports = class {
                })
           })
      }
-     static addProduct(name, img, price, price_sale, content, id_catalog){
+     static addProduct(products){
           return new Promise ((resolve, reject) => {
-               var sql = `INSERT INTO product (name, img, price, price_sale, content, id_catalog) VALUES ('${name}', '${img}', ${price}, ${price_sale}, '${content}', (SELECT * FROM catalog WHERE id=${id_catalog}))`
-               // var sql = `
-               // INSERT INTO product
-               // SET name = '${name}', 
-               //      img = '${img}',
-               //      price = ${price}, 
-               //      price_sale = ${price_sale},
-               //      content = '${content}',
-               //      id_catalog = (
-               //           SELECT id
-               //           FROM catalog
-               //           WHERE name = 'sinh'
-               //     )
-               // `
-               db.query(sql, (err, data) => {
+               console.log(products);
+               var sql = `INSERT INTO product SET ?`
+               
+               db.query(sql, products, (err, data) => {
                     data = data;
                     console.log(data);
                     if (err) {

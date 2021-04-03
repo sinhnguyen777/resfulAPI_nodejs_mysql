@@ -29,12 +29,16 @@ exports.addProduct = (req, res) => {
     const price = req.body.price;
     const price_sale = req.body.price_sale;
     const content = req.body.content;
-    const id_catalog = req.body.id_catalog;
-    
-    // console.log(post);
-    Product.addProduct(name, img, price, price_sale, content, id_catalog)
+    // const id_catalog = req.body.id_catalog;
+    var products = {
+        name: name,
+        img: img,
+        price: price,
+        price_sale: price_sale,
+        content: content
+    }
+    Product.addProduct(products)
     .then(post => {
-        console.log(post);
         res.status(200).json({message: 'Hello post sucessfully', post: post})
     })
     .catch(err => {

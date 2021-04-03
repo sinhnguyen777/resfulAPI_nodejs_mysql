@@ -21,11 +21,16 @@ module.exports = class {
                     data = data;
                     if (err) {
                          return reject(err);
+                    }else{
+                         resolve(data)
+                         console.log(resolve(data));
                     }
-                    resolve(data);
                })
           })
      }
+
+
+
      static addProduct(products){
           return new Promise ((resolve, reject) => {
                console.log(products);
@@ -33,13 +38,13 @@ module.exports = class {
                
                db.query(sql, products, (err, data) => {
                     data = data;
-                    console.log(data);
                     if (err) {
-                         return reject(err);
+                         reject(err);
                     }
                     resolve(data)
-                    console.log(data);
+                    return data;
                })
           })
      }
+     
 }

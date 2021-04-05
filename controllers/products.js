@@ -71,3 +71,14 @@ exports.deleteProduct = (req, res) => {
         res.status(500).json({message: err})
     })
 }
+
+exports.getProductIdCategory = (req, res) => {
+    var id_catalog = req.params.id
+    Product.getProductIdCate(id_catalog)
+    .then(post => {
+        res.status(200).json({message: 'Hello post sucessfully', post: post})
+    })
+    .catch(err => {
+        res.status(500).json({message: err})
+    })
+}

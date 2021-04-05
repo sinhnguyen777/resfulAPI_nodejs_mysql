@@ -72,4 +72,18 @@ module.exports = class {
                }
           })
      }
+
+     static getProductIdCate(id_catalog){
+          return new Promise((resolve, reject) => {
+               var sql = `SELECT * FROM product where id_catalog=${id_catalog}`
+               db.query(sql, function(err, data) {
+                    if (err) {
+                         reject(err);
+                    }
+                    resolve(data)
+                    return data;
+               });
+
+          })
+     }
 }

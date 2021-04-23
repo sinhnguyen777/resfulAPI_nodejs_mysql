@@ -1,11 +1,11 @@
 const Product = require('../models/products')
-const post = [];
+const products = [];
 // show tất cả
 exports.getAll = (req, res) => {
     Product.fetchAll()
     .then(post => {
         // console.log(post);
-        res.status(200).json({ message: 'Hello post sucessfully', post: post });
+        res.status(200).json({ products: post });
     })
     .catch(err => {
         res.status(500).json({ message: err })
@@ -15,7 +15,7 @@ exports.getIdProduct = (req, res) => {
     var id = req.params.id
     Product.fetchIdProduct(id)
     .then(post => {
-        res.status(200).json({ message: 'Hello post sucessfully', post: post });
+        res.status(200).json({ products: post });
     })
     .catch(err => {
         res.status(500).json({ message: err })
@@ -40,7 +40,7 @@ exports.addProduct = (req, res) => {
     Product.addProduct(products)
     .then(post => {
         
-        res.status(200).json({message: 'Hello post sucessfully', post: post})
+        res.status(200).json({message: 'Hello post sucessfully', products: post})
     })
     .catch(err => {
         res.status(500).json({message: err})
@@ -56,7 +56,7 @@ exports.editProduct = (req, res) => {
     
     Product.editProduct(id, name, img, price, price_sale, content)
     .then(post => {
-        res.status(200).json({message: 'Hello post sucessfully', post: post})
+        res.status(200).json({message: 'Hello post sucessfully', products: post})
     })
     .catch(err => {
         res.status(500).json({message: err})
@@ -76,7 +76,7 @@ exports.getProductIdCategory = (req, res) => {
     var id_catalog = req.params.id
     Product.getProductIdCate(id_catalog)
     .then(post => {
-        res.status(200).json({message: 'Hello post sucessfully', post: post})
+        res.status(200).json({message: 'Hello post sucessfully', products: post})
     })
     .catch(err => {
         res.status(500).json({message: err})

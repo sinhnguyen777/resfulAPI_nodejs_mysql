@@ -43,7 +43,6 @@ module.exports = class {
           })
      }
      static editProduct(id, name, img, price, price_sale, content){
-          console.log(id, name, img, price, price_sale, content)
           return new Promise ((resolve, reject) => {
           var sql = `UPDATE product SET name = "${name}", 
                                         img =" ${img}", 
